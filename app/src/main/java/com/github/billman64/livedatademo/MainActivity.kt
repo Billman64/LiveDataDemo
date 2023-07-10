@@ -10,15 +10,14 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
 
     private var vm: MyViewModel?=null
     private var TAG:String="Running Order"
-    private var btn1: Button?=null
-    private var btn2: Button?=null
+    private var plusButton: Button?=null
+    private var minusButton: Button?=null
     private var textView: TextView?=null
 
 
@@ -30,20 +29,20 @@ class MainActivity : AppCompatActivity() {
 
         vm = ViewModelProvider(this)[MyViewModel::class.java]
 
-        btn1 = findViewById(R.id.plus_button)
-        btn2 = findViewById(R.id.minus_button)
+        plusButton = findViewById(R.id.plus_button)
+        minusButton = findViewById(R.id.minus_button)
         textView = findViewById(R.id.output)
         
-        vm!!.getNum().observe(this, Observer<Int>() {
+        vm!!.getNum().observe(this, Observer<Int>() {   // Whenever a change is observed, textView gets updated
             textView?.setText(vm!!.getNum().value.toString())
         })
 
-        btn1?.setOnClickListener {
+        plusButton?.setOnClickListener {
             Log.d(TAG, "plus button pressed")
             vm!!.addNum(1)
         }
 
-        btn2?.setOnClickListener {
+        minusButton?.setOnClickListener {
             Log.d(TAG, "minus button pressed")
             vm!!.addNum(-1)
         }
