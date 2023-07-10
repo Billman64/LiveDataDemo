@@ -4,8 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 
-class myViewModel:ViewModel(){
-    private var num: MutableLiveData<Int> = MutableLiveData()   // 0?
+class MyViewModel:ViewModel(){
+    private var num: MutableLiveData<Int> = MutableLiveData(2)   // 0?
+
+    companion object
 
     public fun getNum(): MutableLiveData<Int>{
         return this.num
@@ -14,4 +16,6 @@ class myViewModel:ViewModel(){
     public fun addNum(n:Int){
         this.num.value = this.num.value!! + n
     }
+
+
 }
